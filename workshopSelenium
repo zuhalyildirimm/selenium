@@ -1,0 +1,91 @@
+from selenium import webdriver
+from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+
+ 
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.action_chains import ActionChains
+
+ 
+
+#Test senaryo 1: Learn More Test
+
+ 
+
+driver = webdriver.Chrome()
+
+ 
+
+driver.get("https://www.etiya.com") #Etiya ana sayfası açılır.
+driver.maximize_window() #Ekran büyütülür.
+
+ 
+
+details = driver.find_element(By.XPATH, "//*[@id='slick-slide20']/div/div[4]/a/span") #Learn More butonu görüntülenir.
+details.click() #Learn More butonuna tıklanır.
+homePageBttn = driver.find_element(By.XPATH, "//*[@id='etiya']/header/div/div[1]/a/img") #Homepage Button görüntülenir.
+homePageBttn.click() #Homepage Button'a tıklanır.
+sleep(5)
+
+ 
+
+
+#Test senaryo 2: Twitter sayfası açılma testi
+
+ 
+
+driver = webdriver.Chrome()
+
+ 
+
+driver.get("https://www.etiya.com") #Etiya ana sayfası açılır.
+driver.maximize_window() #Ekran büyütülür.
+sleep(5)
+twitterPage = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[1]/a[2]/i") #Twitter ikonu bulunur.
+ActionChain = ActionChains(driver) 
+ActionChain.move_to_element(twitterPage) #Twitter ikonuna üzerine gelinir.
+scroll_unit = 500
+driver.execute_script(f"window.scrollBy(0, {scroll_unit});") 
+ActionChain.click() #Twitter ikonuna tıklanır.
+sleep(2)
+ActionChain.perform()
+sleep(5)
+
+ 
+
+
+#Test senaryo 3: Menu Dropdown ve Why Etiya Test
+
+ 
+
+driver = webdriver.Chrome()
+
+ 
+
+driver.get("https://www.etiya.com") #Etiya ana sayfası açılır.
+driver.maximize_window() #Ekran büyütülür.
+sleep(2)
+menuBar = driver.find_element(By.XPATH, "//*[@id='menu']/div[1]/div[1]") #Menu bar görüntülenir.
+menuBar.click() #Menu bar a tıklanır.
+sleep(2)
+aboutButton = driver.find_element(By.XPATH, "//*[@id='menu-container']/ul/li[1]/a")
+hover_element = driver.find_element(By.XPATH, "//*[@id='menu-container']/ul/li[1]/a") #About alanına hover edilir.
+
+ 
+
+sleep(2)
+action_chains = ActionChains(driver)
+
+ 
+
+action_chains.move_to_element(hover_element).perform()
+whyEtiya = driver.find_element(By.XPATH, "//*[@id='scroll1']/ul/li[2]/a" ) #Why Etiya butonuna tıklanır.
+whyEtiya.click()
+
+ 
+
+while True:
+    continue
